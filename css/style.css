@@ -1,0 +1,191 @@
+/* Animate the logo with keyframes.  (Here is a keyframes reference.) It should start at a width of 25px and grow to 475px.  It should also start with an opacity of 0 and end with an opacity of 1. The animation should take 5 seconds and only happen when the page is loaded. **You can complete this step later in the process - it won’t affect the larger views. */
+@keyframes logoAnimation {
+    from {
+        width: 25px;
+        opacity: 0;
+    }
+    to {
+        width: 475px;
+        opacity: 1;
+    }
+}
+
+/* Edit the body element to use the Poppins font (using Google fonts) with serif as a backup.  It should also use the image “concrete_seamless.png” as a background-image with a backup color of #f1f1f1. */
+
+#logo{
+    animation: logoAnimation 5s forwards;
+}
+
+body{
+    font-family: "Poppins", serif; 
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+
+/* Update the header to match the screenshot of the page at 720px */
+header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav_links{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+a:visited{
+    color: blue;
+}
+
+/* background #288088,
+solid 2px border #45ADAD
+20px of padding top and bottom
+50px border-radius top left and right corners */
+
+.card > header{
+    background-color: #288088;
+    border: 2px solid #45ADAD;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+.card{
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+/* Card
+Give an initial size of 450px using flex properties.
+Consider how flex-direction affects element size
+
+Pricing
+use flex and the cards should be centered both horizontally and vertically */
+
+.pricing{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pricing > .card{
+    flex-basis: 450px;
+    overflow: hidden;
+}
+
+
+
+/* Style the images in the gallery class.
+These elements will have a solid 10px border with a color of #50C7C7, 
+10px margin on all four sides and a width of 300px.  
+
+Edit the css for the gallery class to use flex to match our example. 
+(You may want to look at the screen shots from 1200px and 1500px as well -  the changes are not from media queries, but from the use of flex.) */
+
+.gallery {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.gallery img{
+    border: 10px solid #50c7c7;
+    margin: 10px;
+    width: 300px;
+}
+
+/* Edit the css for the header tag (all instances) 
+and the nav_links class to match our example using flex-properties. 
+The logo should be as far to the left as possible and the links as far to
+the right as possible. Use flex properties, NOT position properties. */
+@media screen and (min-width: 900px){
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+        align-items: end;
+        justify-content: flex-end;
+    }
+    .pricing > .card{
+        flex-basis: 275px;
+    }
+    .pricing{
+        display: flex;
+        flex-direction: row;
+    }
+    .card > ul{
+        display: flex;
+        flex-direction: column;
+    }
+    body > header{
+        position: sticky;
+        top:0;
+        z-index: 1000;
+    }
+}
+
+/* The logo should appear but not be animated if prefers-reduced-motion is selected in the accessibility preferences.  */
+@media (prefers-reduced-motion: reduce) {
+    #logo{
+        animation: none;
+    }
+}
+
+/* @media only print and (orientation: portrait) { */
+/* The background image should be removed.  */
+
+/* Change the font on your body to Arial with a backup value of  Helvetica */
+@media only print and (orientation: portrait) {
+    body {
+        font-family: "Arial", "Helvetica";
+        background-image: none;
+        display: flex;
+        flex-direction: column;
+    }
+    /* Edit the nav/nav_links elements so that they are spaced according to the image above. */
+    header{
+        display: flex;
+        flex-direction: column;
+    }
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap:70%
+    }
+
+    /* Edit the pricing class so that the elements align along the bottom.  As long as it aligns along the bottom we don't care if the cards aren't the same height. */
+    .pricing {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: flex-end;
+        justify-content: center;
+    }
+    .card{
+        display: flex;
+        flex-direction: column;
+        border:solid 2px #45ADDD;
+        flex-basis: 325px;
+    }
+    .card >ul {
+        width: auto;
+    }
+    /* No part of the gallery should be visi    ble. */
+    #gallery,.gallery{
+        display: none;
+    }
+    /* Without using list-style-type add the thumbs up entity as shown in the cards.  */
+    .card ul li:nth-of-type(2):after{
+        content: "\1F44D";
+    }
+}
